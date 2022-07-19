@@ -168,7 +168,7 @@ var level1_data = {
     { name: 'healthFood_cabbage', cd: 3 },
     { name: 'healthFood_salmon', cd: 10 }],
 
-    junkFood: [{ name: 'junkFood_fries', cd: 1 },
+    junkFood: [{ name: 'junkFood_fries', cd: 2 },
     { name: 'junkFood_burger', cd: 3 },
     { name: 'junkFood_pizza', cd: 10 }],
     junkFood_CD: [0, 2, 9]
