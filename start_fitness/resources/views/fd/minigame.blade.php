@@ -32,18 +32,20 @@
             height: min(90vh, 90vw);
             /* top: max(calc((90vh - 90vw) / 2), 5vh);
             left: max(calc((90vw - 90vh) / 2), 5vw); */
+            margin-right: 0%; 
 
         }
 
         #rulePage {
             padding-left: 3%;
+            flex-grow: 1;
         }
 
         #rulePage>* {
 
             position: relative;
             /* text-align: center; */
-            font-size: 30px;
+            font-size: 25px;
 
 
         }
@@ -65,8 +67,8 @@
             width: 100%;
             height: 100%;
             border: 1px solid black;
-            background-color: aqua;
-
+            background-color: #8EB4E3;
+            
 
         }
 
@@ -89,6 +91,7 @@
         #initialWeight,
         #initialHeight {
             width: 100px;
+            height: 25px;
             font-size: 25px;
 
 
@@ -108,10 +111,11 @@
 
         #div_weightButtom_bag>div{
             font-size: 25px;
+            width: 30%;
         }
 
         #div_weightButtom_bag>div:hover {
-            background-color: aqua;
+            background-color: #FBC65C;
         }
 
         #errorLog_height,

@@ -5,13 +5,13 @@ import { Food, Player, HealthFood, JunkFood } from './Food5.js';
 var foodContainer = [];
 var JunkFoodContainer = [];
 var HealthFoodContainer = [];
-
+var img_onload = 0;
 var game = '';
 var isPlaying = false;
 
 
 // -------遊戲參數(s)--------------------------------------------------
-var gameTime = 10;  // 時間
+var gameTime = 60;  // 單次總時間
 var canvas_update_time = 0.02; // canvas刷新頻率(秒)
 
 // 大小設置
@@ -104,37 +104,56 @@ var playerData = {
     weight: 70,
     height: 170,
     radius: 70,
-    speed : 10,
+    speed: 10,
     image: {
-       w50 : new Image(),
-       w60 : new Image(),
-       w70 : new Image(),
-       w80 : new Image(),
-       w100 : new Image(),
+        w50: new Image(),
+        w60: new Image(),
+        w70: new Image(),
+        w80: new Image(),
+        w100: new Image(),
     }
 }
 
 //--------------------------------------------
-
 // 所有圖片載入
-(async function() {
-    junkFood_fries.image.src = 'http://localhost:8000/image/gameIMG/bsd_01.png';
-    junkFood_burger.image.src = 'http://localhost:8000/image/gameIMG/bsd_02.png';
-    junkFood_pizza.image.src = 'http://localhost:8000/image/gameIMG/bsd_03.png';
-    healthFood_salmon.image.src ='http://localhost:8000/image/gameIMG/good_01.png';
-    healthFood_cabbage.image.src ='http://localhost:8000/image/gameIMG/good_02.png';
-    healthFood_apple.image.src = 'http://localhost:8000/image/gameIMG/good_03.png';
-    
-    playerData.image.w50.src = 'http://localhost:8000/image/gameIMG/girl_50.png';
-    playerData.image.w60.src = 'http://localhost:8000/image/gameIMG/girl_60.png';
-    playerData.image.w70.src ='http://localhost:8000/image/gameIMG/girl_70.png';
-    playerData.image.w80.src = 'http://localhost:8000/image/gameIMG/girl_80.png';
-    playerData.image.w100.src = 'http://localhost:8000/image/gameIMG/girl_100.png';
+junkFood_fries.image.onload = () => { isImageReady(11, gameBox) };
+junkFood_burger.image.onload = () => { isImageReady(11, gameBox) };
+junkFood_pizza.image.onload = () => { isImageReady(11, gameBox) };
+healthFood_salmon.image.onload = () => { isImageReady(11, gameBox) };
+healthFood_cabbage.image.onload = () => { isImageReady(11, gameBox) };
+healthFood_apple.image.onload = () => { isImageReady(11, gameBox) };
 
-} )();
+playerData.image.w50.onload = () => { isImageReady(11, gameBox) };
+playerData.image.w60.onload = () => { isImageReady(11, gameBox) };
+playerData.image.w70.onload = () => { isImageReady(11, gameBox) };
+playerData.image.w80.onload = () => { isImageReady(11, gameBox) };
+playerData.image.w100.onload = () => { isImageReady(11, gameBox) };
 
-    
-    
+
+// 用img_onload判斷圖片是不是載完了，如果載完(數量等於total)執行callbak function
+function isImageReady(total, callback) {
+    img_onload += 1;
+    console.log(img_onload);
+    if (img_onload == total) {
+
+        callback();
+    }
+}
+
+
+
+junkFood_fries.image.src = 'http://localhost:8000/image/gameIMG/bsd_01.png';
+junkFood_burger.image.src = 'http://localhost:8000/image/gameIMG/bsd_02.png';
+junkFood_pizza.image.src = 'http://localhost:8000/image/gameIMG/bsd_03.png';
+healthFood_salmon.image.src = 'http://localhost:8000/image/gameIMG/good_01.png';
+healthFood_cabbage.image.src = 'http://localhost:8000/image/gameIMG/good_02.png';
+healthFood_apple.image.src = 'http://localhost:8000/image/gameIMG/good_03.png';
+
+playerData.image.w50.src = 'http://localhost:8000/image/gameIMG/girl_50.png';
+playerData.image.w60.src = 'http://localhost:8000/image/gameIMG/girl_60.png';
+playerData.image.w70.src = 'http://localhost:8000/image/gameIMG/girl_70.png';
+playerData.image.w80.src = 'http://localhost:8000/image/gameIMG/girl_80.png';
+playerData.image.w100.src = 'http://localhost:8000/image/gameIMG/girl_100.png';
 
 
 
@@ -156,7 +175,7 @@ var level1_data = {
 }
 
 
-window.onload = function () {
+function gameBox() {
 
 
     // resize canvas 從別人抄來的，不能用
@@ -179,12 +198,12 @@ window.onload = function () {
 
 
 
-//*************************************************************************************** */
-//*************************************************************************************** */
-//*************************************************************************************** */
-//*************************************************************************************** */
-//*************************************************************************************** */
-//*************************************************************************************** */
+    //*************************************************************************************** */
+    //*************************************************************************************** */
+    //*************************************************************************************** */
+    //*************************************************************************************** */
+    //*************************************************************************************** */
+    //*************************************************************************************** */
 
     // 抓到canvas 調整大小先，所有起始畫面調整都在這裡
     var canvas = document.getElementById('canvas');
@@ -192,12 +211,12 @@ window.onload = function () {
     canvas.height = canvas_height;
     var gameBox = document.getElementById('gameBox');
     var initialWeight = document.getElementById('initialWeight');
-    var start_button = document.getElementById('start_button'); 
+    var start_button = document.getElementById('start_button');
 
     // start_button.style.width = start_button_width;
     // start_button.style.top = `calc(${gameBox.offsetHeight * 0.7}px)`;
     // start_button.style.left = `calc(${gameBox.offsetWidth}px  / 2 - (${start_button_width}) / 2  )`;
-    
+
     // initialWeight.style.width = initialWeight_width;
     // initialWeight.style.top = `calc(${gameBox.offsetHeight * 0.6}px)`;
     // initialWeight.style.left = `calc(${gameBox.offsetWidth}px  / 2 - (${initialWeight_width}) / 2  )`;
@@ -219,12 +238,12 @@ window.onload = function () {
         // 大標題
         context.font = "150px sans-serif ";
         context.textAlign = "center";
-        context.fillText(`飲食控制遊戲`, canvas_width/2, 0.2 * canvas_height);
+        context.fillText(`飲食控制遊戲`, canvas_width / 2, 0.2 * canvas_height);
 
         // 大頭
-        context.drawImage(randomPicture(),canvas_width/2 -300  , canvas_height/2 -100, 200 , 200);
-        context.drawImage(randomPicture(),canvas_width/2 -100  , canvas_height/2 -100, 200 , 200);
-        context.drawImage(randomPicture(),canvas_width/2 +100  , canvas_height/2 -100, 200 , 200);
+        context.drawImage(randomPicture(), canvas_width / 2 - 300, canvas_height / 2 - 100, 200, 200);
+        context.drawImage(randomPicture(), canvas_width / 2 - 100, canvas_height / 2 - 100, 200, 200);
+        context.drawImage(randomPicture(), canvas_width / 2 + 100, canvas_height / 2 - 100, 200, 200);
 
 
         document.getElementById('start_button').style.display = 'block';
@@ -234,14 +253,13 @@ window.onload = function () {
 
     startPage();
 
-   async function randomPicture() {
-       await downloadImage;
-        switch (Math.floor(Math.random()*5)) {
-            case 0: return  playerData.image.w50; 
-            case 1: return playerData.image.w60; 
-            case 2: return playerData.image.w70; 
-            case 3: return playerData.image.w80; 
-            case 4: return playerData.image.w100; 
+    function randomPicture() {
+        switch (Math.floor(Math.random() * 5)) {
+            case 0: return playerData.image.w50;
+            case 1: return playerData.image.w60;
+            case 2: return playerData.image.w70;
+            case 3: return playerData.image.w80;
+            case 4: return playerData.image.w100;
         }
     }
 
@@ -429,19 +447,19 @@ window.onload = function () {
         // 換算BMI
         var playerWeight = player.weight;
         var playerHeight = player.height;
-                        
+
         var bmi = playerWeight / (playerHeight * 0.01) / (playerHeight * 0.01);
         var bar_max = 40.5;
         var bar_min = 13;
 
         // 是否鎖上下限
         if (lockWeight) {
-            if (bmi < bar_min) {bmi = bar_min;   player.weight = Math.floor(bar_min*playerHeight*playerHeight/10000)};
-            if (bmi > bar_max) {bmi = bar_max;   player.weight = Math.floor(bar_max*playerHeight*playerHeight/10000)};
+            if (bmi < bar_min) { bmi = bar_min; player.weight = Math.floor(bar_min * playerHeight * playerHeight / 10000) };
+            if (bmi > bar_max) { bmi = bar_max; player.weight = Math.floor(bar_max * playerHeight * playerHeight / 10000) };
         }
 
         var barPercent = (bmi - bar_min) / (bar_max - bar_min);
-       
+
 
 
         // 現在狀態:全長 BMI = 13 ~ 40.5
@@ -490,16 +508,16 @@ window.onload = function () {
 
 
 
-//---------------------------------------------------------------------------------------------------------
-//
-//
-//---------------------------------------------------------------------------------------------------------
+    //---------------------------------------------------------------------------------------------------------
+    //
+    //
+    //---------------------------------------------------------------------------------------------------------
 
 
 
     // 關卡設計
 
-    function setLevel(player,levelData = level1_data) {
+    function setLevel(player, levelData = level1_data) {
 
         var healthFood_selection = levelData.healthFood;
         var junkFood_selection = levelData.junkFood;
@@ -544,14 +562,14 @@ window.onload = function () {
     //-------------------------------------------------------------------------------
     // 實際開始與結束
 
-    function start(height,weight,levelData = level1_data) {
+    function start(height, weight, levelData = level1_data) {
         clearInterval(game);
         isPlaying = true;
         playerData.height = height;
         playerData.weight = weight;
         var player = new Player(playerData);
         var timeLeft = gameTime;
-        setLevel(player,levelData);
+        setLevel(player, levelData);
 
         game = setInterval(() => {
             if (!document.getElementById('canvas')) {
@@ -564,7 +582,7 @@ window.onload = function () {
             if (timeLeft <= 0) { timeLeft = 0 };
             showTimeLeft(timeLeft);
             // drawWeightBar(player,true);
-            drawWeightBar(player,false);
+            drawWeightBar(player, false);
 
 
             if (timeLeft <= 0) { gameover(player) };
@@ -583,7 +601,7 @@ window.onload = function () {
         killFoods(JunkFoodContainer);
         startPage();
         endPage(player);
-        
+
 
     }
 
@@ -592,29 +610,29 @@ window.onload = function () {
     function endPage(player) {
         // 清畫面
         context.clearRect(0, 0, canvas.width, canvas.height);
-    
+
         // 刻出bmi值
-        var bmi = Math.floor((player.weight*10000/player.height/player.height));
+        var bmi = Math.floor((player.weight * 10000 / player.height / player.height));
         context.font = "80px sans-serif";
         context.textAlign = "cneter";
-        context.fillText(`您最後的bmi值為 : ${bmi}`,canvas_width/2 , 0.2 * canvas_height);
+        context.fillText(`您最後的bmi值為 : ${bmi}`, canvas_width / 2, 0.2 * canvas_height);
 
 
         // 根據bmi值寫一些勉勵人的話
-        var resultHTML=""
-        if (bmi >= 40){
-            resultHTML="你的體重似乎完全控制不下來，再接再厲";
-        }else if (bmi >= 35){
-            resultHTML="我知道你很努力，請再加油!";
-        }else if ((bmi <= 24) && (bmi >=18)){
-            resultHTML="恭喜你，你是一個控制飲食達人";
-        }else if (bmi <= 13) {
-            resultHTML="我知道你很厲害，但老實說太瘦也不是甚麼好事，之後努力增胖吧";
-        }else{
-            resultHTML="很高興你把體重控制得不錯，但還可以更好";
+        var resultHTML = ""
+        if (bmi >= 40) {
+            resultHTML = "你的體重似乎完全控制不下來，再接再厲";
+        } else if (bmi >= 35) {
+            resultHTML = "我知道你很努力，請再加油!";
+        } else if ((bmi <= 24) && (bmi >= 18)) {
+            resultHTML = "恭喜你，你是一個控制飲食達人";
+        } else if (bmi <= 13) {
+            resultHTML = "我知道你很厲害，但老實說太瘦也不是甚麼好事，之後努力增胖吧";
+        } else {
+            resultHTML = "很高興你把體重控制得不錯，但還可以更好";
         }
         context.font = "30px sans-serif";
-        context.fillText(resultHTML,canvas_width/2 , 0.6 * canvas_height);
+        context.fillText(resultHTML, canvas_width / 2, 0.6 * canvas_height);
 
 
     }
@@ -628,16 +646,16 @@ window.onload = function () {
     // 綁定按鍵事件
     document.getElementById('start_button').addEventListener('click', (e) => {
 
-        
+
         console.log(document.getElementById('initialHeight').value)
-        var height = parseInt(document.getElementById('initialHeight').value,10);
-        var weight = parseInt(document.getElementById('initialWeight').value,10);
+        var height = parseInt(document.getElementById('initialHeight').value, 10);
+        var weight = parseInt(document.getElementById('initialWeight').value, 10);
 
 
         // 符合條件才開始
         if (height && weight) {
             document.getElementById('start_button').style.display = 'none';
-            start(height,weight);
+            start(height, weight);
         }
 
         // 補齊身高
@@ -649,20 +667,20 @@ window.onload = function () {
             const event = new Event("change", {
                 bubbles: true,
                 cancelable: true,
-              });
+            });
             document.getElementById('initialHeight').dispatchEvent(event)
             document.getElementById('errorLog').innerText = '可能您沒輸入身高或體重或是有個數值怪怪的，所以我們給一個建議值';
         }
 
         // 補齊體重
         if (!weight) {
-            weight = Math.floor(26*height*height/10000);
+            weight = Math.floor(26 * height * height / 10000);
             document.getElementById('initialWeight').value = weight;
             document.getElementById('errorLog').innerText = '可能您沒輸入身高或體重或是有個數值怪怪的，所以我們給一個建議值';
         }
 
 
-       
+
     });
 
 
