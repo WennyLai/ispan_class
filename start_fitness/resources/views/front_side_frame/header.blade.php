@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light " style="background-color: #E5D9CE;">
-    <a class="navbar-brand d-lg-none" href="#"><img width="60" height="60" style="display:block; margin:auto;"
+    <a class="navbar-brand d-lg-none" href="/index"><img width="60" height="60" style="display:block; margin:auto;"
             src="/image/AI/LOGO.png"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbarToggler7"
         aria-controls="myNavbarToggler7" aria-expanded="false" aria-label="Toggle navigation">
@@ -19,7 +19,7 @@
             <li class="nav-iteml px-1">
                 <a class="nav-link" href="#">健身地圖</a>
             </li>
-            <a class="d-none d-lg-block px-4" href="#"><img width="60" height="60" style="display:block; margin:auto;"
+            <a class="d-none d-lg-block px-4" href="/index"><img width="60" height="60" style="display:block; margin:auto;"
                     src="/image/AI/LOGO.png"></a>
             <li class="nav-itemr px-1">
                 <a class="nav-link" href="/food/introduce">飲食Tip</a>

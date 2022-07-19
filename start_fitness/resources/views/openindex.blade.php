@@ -69,7 +69,7 @@
 
 <body>
     <div class="row"></div>
-    <a href="/food">
+    <a href="/sport">
         <div id="left_door" class="sp "></div>
     </a>
     <a href="/food">
